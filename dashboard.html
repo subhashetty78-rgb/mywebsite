@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Nexcart</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#2575fc;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+button{
+padding:12px 24px;
+border:none;
+background:#2575fc;
+color:white;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h1>🎉 Welcome to Nexcart!</h1>
+<p>You are successfully logged in.</p>
+
+<button id="logout">Log Out</button>
+</div>
+
+<script>
+const SUPABASE_URL = "https://qbuejkdqwktpttjwqpqt.supabase.co";
+const SUPABASE_KEY = "sb_publishable_46nktTDbW2MYbErvv-zgVg_x8HxCXgO";
+
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+document.getElementById("logout").addEventListener("click", async () => {
+  await client.auth.signOut();
+  window.location.href = "login.html";
+});
+</script>
+
+</body>
+</html>

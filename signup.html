@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - Nexcart</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#2575fc;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.box{
+background:white;
+padding:25px;
+border-radius:12px;
+width:320px;
+text-align:center;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#2575fc;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Create Account</h2>
+
+<input type="email" id="email" placeholder="Email">
+
+<input type="password" id="password" placeholder="Password">
+
+<button>Create Account</button>
+
+<p>Already have an account?
+<a href="login.html">Login</a>
+</p>
+
+</div>
+<script>
+const SUPABASE_URL = "https://qbuejkdqwktpttjwqpqt.supabase.co";
+const SUPABASE_KEY = "sb_publishable_46nktTDbW2MYbErvv-zgVg_x8HxCXgO";
+
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const button = document.querySelector("button");
+
+button.addEventListener("click", async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const { error } = await client.auth.signUp({
+    email,
+    password
+  });
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert("Account created! Please check your email to verify your account.");
+  }
+});
+</script>
+
+</body>
+</html>
+
